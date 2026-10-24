@@ -14,6 +14,12 @@ week1/
   day4/   # Structured JSON output with Pydantic
   day5/
     resume_evaluator/  # Resume parsing and AI-based job matching
+
+week2/
+  day6/   # Prompt engineering and role-based task design
+  day7/   # ReAct reasoning and tool-calling workflow
+  day8/   # Prompt chaining for resume-to-job matching
+  day9/   # Streaming model responses in real time
 ```
 
 
@@ -116,6 +122,18 @@ uv run python .\json_pydantic.py
 
 # Day 5 (from week1\day5\resume_evaluator)
 .\.venv\Scripts\python.exe .\resume_parser.py
+
+# Day 6
+uv run python .\prompt_engg.py
+
+# Day 7
+uv run python .\reAct.py
+
+# Day 8
+uv run python .\prompt_chaining.py
+
+# Day 9
+uv run python .\streaming.py
 ```
 
 The day 1 Groq example needs an API key. Create a `.env` file in that day's
@@ -140,6 +158,32 @@ secret into source code or commit it.
   the Groq API to organize candidate details and compare them with a job
   description, then review the generated scores and evaluations. See the
   [resume evaluator](./week1/day5/resume_evaluator/README.md).
+
+## Week 2 analysis
+
+Week 2 focused on moving from basic LLM usage to better prompt design and
+practical AI workflows. The main lesson was that model quality improves not
+just from larger models, but from clearer instructions, structured outputs, and
+well-defined reasoning steps.
+
+- **Day 6 — Prompt engineering:** Learned how to define a role, constraints,
+  output format, examples, and fallback behavior in a single prompt. This makes
+  the AI more reliable for classification tasks and reduces ambiguous responses.
+- **Day 7 — ReAct pattern:** Built a simple tool-using agent that thinks,
+  chooses an action, receives an observation, and then decides the next step.
+  This introduced the core idea behind agentic workflows: break work into
+  reasoning + tool execution + feedback loops.
+- **Day 8 — Prompt chaining:** Split a workflow into multiple stages: extract
+  skills from a resume, extract skills from a job description, then compare both
+  and score the match. This is a practical pattern for multi-step AI tasks.
+- **Day 9 — Streaming responses:** Implemented incremental output generation so
+  the model's answer appears in real time instead of waiting for the full
+  response. This is useful for chat UX, long-form generation, and progressive
+  feedback.
+
+Overall, Week 2 showed how to build more dependable AI systems by combining
+prompt structure, tool use, and workflow orchestration instead of relying on a
+single raw prompt.
 
 ## Adding dependencies
 
