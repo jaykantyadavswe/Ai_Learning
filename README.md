@@ -22,6 +22,7 @@ week2/
   day9/   # Streaming model responses in real time
 
 week3/
+  day1/   # Keyword-based retrieval with an LLM response
   day2/   # Text embeddings and cosine similarity
   day3/   # Retrieval-augmented generation (RAG)
 ```
@@ -144,10 +145,13 @@ uv run python .\embed_rag.py
 
 # Week 3, Day 3
 uv run python .\full_rag.py
+
+# Week 3, Day 1
+uv run python .\rag_intro.py
 ```
 
-The Groq examples in Week 1 Day 1 and Week 3 Day 3 need an API key. Create a
-`.env` file in the corresponding project folder (the same folder as
+The Groq examples in Week 1 Day 1 and Week 3 Days 1 and 3 need an API key.
+Create a `.env` file in the corresponding project folder (the same folder as
 `pyproject.toml`) with:
 
 ```dotenv
@@ -202,6 +206,10 @@ Week 3 introduces the foundations of retrieval-augmented generation (RAG):
 turning text into vector embeddings, finding relevant information by semantic
 similarity, and using retrieved context to ground an LLM response.
 
+- **Day 1 — Introductory retrieval:** Created a small in-memory knowledge base,
+  selected context with simple keyword checks, and supplied it to the Groq chat
+  completions API so the response is grounded in the retrieved information.
+  See [day1/rag_intro.py](./week3/day1/rag_intro.py).
 - **Day 2 — Text embeddings and cosine similarity:** Used the
   `all-MiniLM-L6-v2` Sentence Transformer model to encode text as vectors, then
   compared sentence embeddings with cosine similarity. This demonstrates how
