@@ -20,6 +20,7 @@ week2/
   day7/   # ReAct reasoning and tool-calling workflow
   day8/   # Prompt chaining for resume-to-job matching
   day9/   # Streaming model responses in real time
+  hiremeAi/  # AI resume parsing and recruiter Q&A
 
 week3/
   day1/   # Keyword-based retrieval with an LLM response
@@ -140,6 +141,9 @@ uv run python .\prompt_chaining.py
 # Day 9
 uv run python .\streaming.py
 
+# Week 2 HireMeAI (from week2\hiremeAi\backend)
+uv run uvicorn main:app --reload
+
 # Week 3, Day 2
 uv run python .\embed_rag.py
 
@@ -150,9 +154,10 @@ uv run python .\full_rag.py
 uv run python .\rag_intro.py
 ```
 
-The Groq examples in Week 1 Day 1 and Week 3 Days 1 and 3 need an API key.
-Create a `.env` file in the corresponding project folder (the same folder as
-`pyproject.toml`) with:
+The Groq examples in Week 1 Day 1, Week 2 HireMeAI, and Week 3 Days 1 and 3
+need an API key. For HireMeAI, put the `.env` file in
+`week2\hiremeAi\backend`; for the other examples, put it in the day's project
+folder (the same folder as `pyproject.toml`). Use:
 
 ```dotenv
 GROQ_API_KEY=your_groq_api_key
@@ -172,7 +177,11 @@ secret into source code or commit it.
 - **Day 5 — Resume evaluation:** Extract text from PDF and DOCX resumes, use
   the Groq API to organize candidate details and compare them with a job
   description, then review the generated scores and evaluations. See the
-  [resume evaluator](./week1/day5/resume_evaluator/README.md).
+  [resume evaluator](./week1/day5/resume_evaluator/README.md) and
+  [Day 5 topics and interview questions](./week1/day5/README.md).
+- See the [Day 1](./week1/day1/README.md), [Day 2](./week1/day2/README.md),
+  [Day 3](./week1/day3/README.md), and
+  [Day 4](./week1/day4/README.md) guides for topics and interview Q&A.
 
 ## Week 2 analysis
 
@@ -195,6 +204,15 @@ well-defined reasoning steps.
   the model's answer appears in real time instead of waiting for the full
   response. This is useful for chat UX, long-form generation, and progressive
   feedback.
+- **HireMeAI — Resume Q&A application:** Built a FastAPI backend that extracts
+  text from a candidate's PDF resume, uses a Groq model to structure the
+  candidate profile, and answers recruiter questions using that profile.
+  Run it from `week2\hiremeAi\backend` with `uv run uvicorn main:app --reload`;
+  Swagger docs are available at `http://127.0.0.1:8000/docs`. See the
+  [HireMeAI project README](./week2/hiremeAi/README.md) for setup details.
+- See the [Day 6](./week2/day6/README.md), [Day 7](./week2/day7/README.md),
+  [Day 8](./week2/day8/README.md), and [Day 9](./week2/day9/README.md) guides
+  for topics and interview Q&A.
 
 Overall, Week 2 showed how to build more dependable AI systems by combining
 prompt structure, tool use, and workflow orchestration instead of relying on a
@@ -220,6 +238,8 @@ similarity, and using retrieved context to ground an LLM response.
   context to the Groq chat completions API to generate a grounded answer. The
   example requires `GROQ_API_KEY` in the day's `.env` file.
   See [day3/full_rag.py](./week3/day3/full_rag.py).
+- See the [Day 1](./week3/day1/README.md), [Day 2](./week3/day2/README.md),
+  and [Day 3](./week3/day3/README.md) guides for topics and interview Q&A.
 
 Together, these examples show the core RAG sequence: embed the source content
 and query, retrieve relevant context, then use that context to guide generation.
