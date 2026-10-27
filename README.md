@@ -20,6 +20,10 @@ week2/
   day7/   # ReAct reasoning and tool-calling workflow
   day8/   # Prompt chaining for resume-to-job matching
   day9/   # Streaming model responses in real time
+
+week3/
+  day2/   # Text embeddings and cosine similarity
+  day3/   # Retrieval-augmented generation (RAG)
 ```
 
 
@@ -45,12 +49,12 @@ uv --version
 
 ## Set up a project
 
-Run these commands from the repository's `Jaykant_AI_Learning` folder. For
-days 1–4, choose the day you want to work on:
+Run these commands from the repository's `Jaykant_AI_Learning` folder. Choose
+the project folder you want to work on:
 
 ```powershell
 Set-Location .\week1\day1
-# Or use .\week1\day2, .\week1\day3, or .\week1\day4.
+# Other examples: .\week1\day2, .\week2\day6, or .\week3\day2.
 ```
 
 Install the Python version configured for that project and sync its locked
@@ -134,10 +138,17 @@ uv run python .\prompt_chaining.py
 
 # Day 9
 uv run python .\streaming.py
+
+# Week 3, Day 2
+uv run python .\embed_rag.py
+
+# Week 3, Day 3
+uv run python .\full_rag.py
 ```
 
-The day 1 Groq example needs an API key. Create a `.env` file in that day's
-folder (the same folder as `pyproject.toml`) with:
+The Groq examples in Week 1 Day 1 and Week 3 Day 3 need an API key. Create a
+`.env` file in the corresponding project folder (the same folder as
+`pyproject.toml`) with:
 
 ```dotenv
 GROQ_API_KEY=your_groq_api_key
@@ -184,6 +195,26 @@ well-defined reasoning steps.
 Overall, Week 2 showed how to build more dependable AI systems by combining
 prompt structure, tool use, and workflow orchestration instead of relying on a
 single raw prompt.
+
+## Week 3 analysis
+
+Week 3 introduces the foundations of retrieval-augmented generation (RAG):
+turning text into vector embeddings, finding relevant information by semantic
+similarity, and using retrieved context to ground an LLM response.
+
+- **Day 2 — Text embeddings and cosine similarity:** Used the
+  `all-MiniLM-L6-v2` Sentence Transformer model to encode text as vectors, then
+  compared sentence embeddings with cosine similarity. This demonstrates how
+  sentences with similar meanings can be matched even when their wording differs.
+  See [day2/embed_rag.py](./week3/day2/embed_rag.py).
+- **Day 3 — Basic RAG workflow:** Encoded a small collection of employee-policy
+  documents, retrieved the document most similar to a question, and passed that
+  context to the Groq chat completions API to generate a grounded answer. The
+  example requires `GROQ_API_KEY` in the day's `.env` file.
+  See [day3/full_rag.py](./week3/day3/full_rag.py).
+
+Together, these examples show the core RAG sequence: embed the source content
+and query, retrieve relevant context, then use that context to guide generation.
 
 ## Adding dependencies
 
